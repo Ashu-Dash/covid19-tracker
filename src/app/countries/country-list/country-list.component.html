@@ -1,1 +1,3 @@
-<p>country-list works!</p>
+<cdk-virtual-scroll-viewport style="height: 500px" itemSize="90">
+    <app-country-item *cdkVirtualFor="let country of countries" [country]="country"></app-country-item>
+</cdk-virtual-scroll-viewport>
