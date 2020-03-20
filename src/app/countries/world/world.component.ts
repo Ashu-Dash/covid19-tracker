@@ -29,7 +29,7 @@ export class WorldComponent implements OnInit {
     ];
   }
 
-  public chartType: string = 'bar';
+  public chartType: string = 'horizontalBar';
 
   public chartDatasets: Array<any> = [];
 
