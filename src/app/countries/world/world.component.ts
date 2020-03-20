@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../global.service';
 import { Country } from '../country.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-world',
@@ -9,13 +10,22 @@ import { Country } from '../country.model';
 })
 export class WorldComponent implements OnInit {
   world: Country;
+  subscription: Subscription;
 
   constructor(private globalService: GlobalService) { }
 
   ngOnInit() {
+    this.subscription = this.globalService.dataChanged.subscribe(
+      (world: Country) => {
+        this.world = world
+      }
+    );
     this.world = this.globalService.getData();
     this.chartDatasets = [
-      { data: [this.world.cases, this.world.active, this.world.recovered, this.world.deaths] }
+      {
+        data: [this.world.cases, this.world.active, this.world.recovered, this.world.deaths],
+        label: this.world.country
+      }
     ];
   }
 

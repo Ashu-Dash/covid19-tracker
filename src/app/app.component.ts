@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CountryDataService } from './countries/country-data.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,15 @@ import { CountryDataService } from './countries/country-data.service';
 })
 export class AppComponent implements OnInit {
 
+  constructor(private route: ActivatedRoute,
+    private router: Router) {
+}
+
   ngOnInit(): void {
   }
   title = 'covid19-tracker';
+
+  showWorldData() {
+    this.router.navigate(['']);
+  }
 }
